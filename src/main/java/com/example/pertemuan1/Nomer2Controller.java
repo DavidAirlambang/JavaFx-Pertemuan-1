@@ -17,8 +17,10 @@ public class Nomer2Controller {
     @FXML
     private Button empat,lima,enam,tujuh,delapan,sembilan,nol,del,sama,tambah,kurang,kali,bagi;
     String hitung = "";
-    int hasil = 0;
-    int temp = 0;
+    int temp = -9999;
+    int a;
+    int b;
+    String operasi = "";
     String doIt;
 
 
@@ -39,11 +41,16 @@ public class Nomer2Controller {
    }
 
     public void tambah(ActionEvent actionEvent) {
-        show.setText("+");
-        hasil = Integer.parseInt(hitung);
-        temp += hasil;
-        hitung = "";
+        operasi = hitung;
+        operasi += "+";
+        show.setText(operasi);
+        if (temp != -9999){
+            a = temp;
+        } else {
+            a = Integer.parseInt(hitung);
+        }
         doIt = "tambah";
+        hitung = "";
     }
 
     public void empat(ActionEvent actionEvent) {
@@ -62,11 +69,16 @@ public class Nomer2Controller {
     }
 
     public void kurang(ActionEvent actionEvent) {
-        show.setText("+");
-        hasil = Integer.parseInt(hitung);
-        temp += hasil;
-        hitung = "";
+        operasi = hitung;
+        operasi += "-";
+        show.setText(operasi);
+        if (temp != -9999){
+            a = temp;
+        } else {
+            a = Integer.parseInt(hitung);
+        }
         doIt = "kurang";
+        hitung = "";
     }
 
     public void delapan(ActionEvent actionEvent) {
@@ -85,11 +97,16 @@ public class Nomer2Controller {
     }
 
     public void kali(ActionEvent actionEvent) {
-        show.setText("*");
-        hasil = Integer.parseInt(hitung);
-        temp *= hasil;
-        hitung = "";
+        operasi = hitung;
+        operasi += "*";
+        show.setText(operasi);
+        if (temp != -9999){
+            a = temp;
+        } else {
+            a = Integer.parseInt(hitung);
+        }
         doIt = "kali";
+        hitung = "";
     }
 
     public void del(ActionEvent actionEvent) {
@@ -103,21 +120,33 @@ public class Nomer2Controller {
     }
 
     public void bagi(ActionEvent actionEvent) {
-        show.setText("/");
-        hasil = Integer.parseInt(hitung);
-        temp /= hasil;
-        hitung = "";
+        operasi = hitung;
+        operasi += "/";
+        show.setText(operasi);
+        if (temp != -9999){
+            a = temp;
+        } else {
+            a = Integer.parseInt(hitung);
+        }
         doIt = "bagi";
+        hitung = "";
     }
 
     public void sama(ActionEvent actionEvent) {
-        if (doIt == "tambah") {temp += Integer.parseInt(hitung);}
-        else if (doIt == "kurang") {temp -= Integer.parseInt(hitung);}
-        else if (doIt == "kali") {temp *= Integer.parseInt(hitung);}
-        else if (doIt == "bagi") {temp /= Integer.parseInt(hitung);}
-        show.setText(String.valueOf(temp));
-//        hasil = 0;
-//        temp = 0;
+        b = Integer.parseInt(hitung);
+        if (doIt == "tambah") {
+            temp = a+b;
+            show.setText(String.valueOf(a+b));
+        } else if (doIt == "kurang"){
+            temp = a-b;
+            show.setText(String.valueOf(a-b));
+        } else if (doIt == "kali"){
+            temp = a*b;
+            show.setText(String.valueOf(a*b));
+        }else if (doIt == "bagi"){
+            temp = a/b;
+            show.setText(String.valueOf(a/b));
+        }
         hitung = "";
     }
 }
